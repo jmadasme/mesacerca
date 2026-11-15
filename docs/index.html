@@ -156,6 +156,39 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 .rich .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
 .rich .card-grid .card{margin:0}
 
+
+.rich h3{margin:26px 0 8px}
+.rich p{margin:0 0 14px;color:var(--muted);line-height:1.7}
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(11,34,43,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm,#D6A86A)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(11,34,43,.55)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;font-weight:600}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-align:right}
+.rating-note{grid-column:2/-1;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";display:inline-block;width:18px;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::before{content:"–"}
+.faq p{margin:10px 0 0 18px;font-size:14px;color:var(--muted)}
+@media(max-width:720px){
+  .fail-grid{grid-template-columns:1fr}
+  .rating-head{flex-direction:column;align-items:flex-start}
+  .rating-row{grid-template-columns:120px 1fr 44px}
+}
+
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
 </head>
@@ -188,15 +221,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">1</div><div class="stat-label">versión</div></div><div class="stat"><div class="stat-num">24</div><div class="stat-label">documentos</div></div><div class="stat"><div class="stat-num">Next.js</div><div class="stat-label">stack</div></div><div class="stat"><div class="stat-num">1</div><div class="stat-label">marketplace</div></div></div></section>
 
-<section class="section" id="proyecto"><div class="wrap">
-  <div class="section-head reveal"><div class="kicker">01 — El proyecto</div><h2>Qué resuelve</h2><p class="section-sub">Proyecto de marketplace gastronómico local: pedidos, repartidores y comercios. Incluye arquitectura, modelo de negocio, cumplimiento chileno, QA, seguridad y despliegue en Cloudflare/VPS.</p></div>
-  <div class="two">
-    <div class="card reveal"><span class="tag">Problema</span><h3>El punto de partida</h3><p>Los marketplaces de comida concentran la demanda y cobran comisiones que el comercio no puede negociar, mientras el cliente paga de más.</p></div>
-    <div class="card reveal"><span class="tag">Solución</span><h3>La propuesta</h3><p>Un marketplace local con pedidos directos, repartidores y una operación documentada, pensado para Santiago y desplegable en infraestructura propia.</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>MesaCerca es un marketplace gastronómico para Santiago con cuatro roles: cliente, local, repartidor y administración. La aplicación web cubre búsqueda, carrito, checkout, seguimiento, PIN de entrega y calificación; una app Expo reúne las experiencias de cliente y repartidor. Detrás hay Next.js, Prisma y PostgreSQL 18, con pagos hospedados, KYC externo y MFA para roles sensibles.</p><p>El proyecto ataca la comisión opaca de los marketplaces concentrados: pedidos directos, precios recalculados en el servidor y una operación documentada para desplegar en infraestructura propia. Su interés no está en la demo sino en el trabajo alrededor: dos auditorías de seguridad, cumplimiento chileno y veintitrés documentos de diseño, QA y operación. No está desplegado, no procesa pagos reales y la copia publicada omite directorios de runtime.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>mesacerca</h3><span class="count">100 archivos</span></div>
@@ -204,23 +229,23 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
   <a href="https://github.com/jmadasme/mesacerca/tree/main/versions/mesacerca" target="_blank" rel="noopener">Ver carpeta <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </article></div>
 </div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">01 — La idea</div><h2>El delivery no necesita otro gigante. Necesita infraestructura para los locales.</h2><p class="section-sub">MesaCerca conecta cocinas, clientes y repartidores con reglas claras, comisiones transparentes y operación híbrida.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — La idea</div><h2>El delivery no necesita otro gigante. Necesita infraestructura para los locales.</h2><p class="section-sub">MesaCerca conecta cocinas, clientes y repartidores con reglas claras, comisiones transparentes y operación híbrida.</p></div><div class="rich reveal"><div class="card-grid">
 <div class="card"><h3>El problema</h3><div><div></div><p>Los locales dependen de plataformas que cobran comisiones altas, esconden los datos del cliente y deciden por ellos. Los repartidores compiten por migajas y los clientes pagan de más.</p></div></div>
 <div class="card"><h3>La solución</h3><div><div></div><p>Un marketplace con comisión justa, reparto propio o freelance, datos del cliente para el local y una experiencia seria desde el primer clic. Web/PWA primero y app nativa después.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">02 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">Del menú del local a la puerta del cliente, con cada actor informado.</p></div><div class="rich reveal"><div class="timeline">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">Del menú del local a la puerta del cliente, con cada actor informado.</p></div><div class="rich reveal"><div class="timeline">
 <div class="step"><div class="step-n">01</div><h4>El local se registra</h4><div><p>Carga menú, precios, horarios y disponibilidad; elige reparto propio o red freelance.</p></div></div>
 <div class="step"><div class="step-n">02</div><h4>El cliente pide</h4><div><p>Descubre locales por comuna y cocina, arma el carrito y paga online o en efectivo.</p></div></div>
 <div class="step"><div class="step-n">03</div><h4>El repartidor acepta</h4><div><p>Recibe ofertas por turno, acepta, entrega y cobra; el tracking muestra el camino.</p></div></div>
 <div class="step"><div class="step-n">04</div><h4>El admin opera</h4><div><p>Verifica locales y repartidores, resuelve disputas y controla tarifas, zonas y finanzas.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — Bajo el capó</div><h2>Cuatro roles, un solo sistema</h2><p class="section-sub">Next.js y PostgreSQL sostienen la operación; la app Expo lleva la experiencia al teléfono.</p></div><div class="rich reveal"><figure><img src="assets/rich/og.svg" alt="Arquitectura de MesaCerca con clientes, locales, repartidores, admin, Next.js y PostgreSQL" loading="lazy"><figcaption>Una sola base de datos y una sola lógica de pedidos para los cuatro roles.</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Bajo el capó</div><h2>Cuatro roles, un solo sistema</h2><p class="section-sub">Next.js y PostgreSQL sostienen la operación; la app Expo lleva la experiencia al teléfono.</p></div><div class="rich reveal"><figure><img src="assets/rich/og.svg" alt="Arquitectura de MesaCerca con clientes, locales, repartidores, admin, Next.js y PostgreSQL" loading="lazy"><figcaption>Una sola base de datos y una sola lógica de pedidos para los cuatro roles.</figcaption></figure>
 <div class="card-grid">
 <div class="card"><h3>Marketplace híbrido</h3><div><p>Cada local decide si entrega con su propio equipo o con la red freelance.</p></div></div>
 <div class="card"><h3>Operación visible</h3><div><p>Pedidos, pagos, tracking y disputas viven en el mismo panel administrativo.</p></div></div>
 <div class="card"><h3>Dos superficies</h3><div><p>Web/PWA para arrancar y app Expo/React Native para clientes y repartidores.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">La operación completa, no solo la pantalla bonita.</p></div><div class="rich reveal"><div class="features">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">La operación completa, no solo la pantalla bonita.</p></div><div class="rich reveal"><div class="features">
 <div class="feature"><h3>Cuatro roles</h3><div><p>Cliente, local, repartidor y administración con permisos y flujos separados.</p></div></div>
 <div class="feature"><h3>Pagos flexibles</h3><div><p>Demo, Mercado Pago, Transbank Webpay y efectivo, con idempotencia y validación.</p></div></div>
 <div class="feature"><h3>Tracking</h3><div><p>Mapa, timeline, PIN de entrega y calificación al final del pedido.</p></div></div>
@@ -228,24 +253,23 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <div class="feature"><h3>PWA + Expo</h3><div><p>La web instala como app y la versión nativa usa SecureStore y HTTPS obligatorio.</p></div></div>
 <div class="feature"><h3>Despliegue</h3><div><p>Docker, Caddy, Cloudflare, PostgreSQL TLS, migraciones y backups cifrados.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/arquitectura-roles.svg" alt="MesaCerca — arquitectura roles" loading="lazy"><figcaption>Arquitectura Roles</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/arquitectura-roles.svg" alt="MesaCerca — arquitectura roles" loading="lazy"><figcaption>Arquitectura Roles</figcaption></figure>
 <figure><img src="assets/rich/despliegue.svg" alt="MesaCerca — despliegue" loading="lazy"><figcaption>Despliegue</figcaption></figure>
 <figure><img src="assets/rich/flujo-pedido-pago.svg" alt="MesaCerca — flujo pedido pago" loading="lazy"><figcaption>Flujo Pedido Pago</figcaption></figure>
 <figure><img src="assets/rich/logo-mesacerca.svg" alt="MesaCerca — logo mesacerca" loading="lazy"><figcaption>Logo Mesacerca</figcaption></figure>
 <figure><img src="assets/rich/modelo-datos.svg" alt="MesaCerca — modelo datos" loading="lazy"><figcaption>Modelo Datos</figcaption></figure></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">Next.js App Router y TypeScript en el frontend; PostgreSQL y Prisma en los datos; Expo/React Native en móvil; Docker, Caddy y Cloudflare en producción.</p></div><div class="rich reveal"><p>Next.js TypeScript PostgreSQL Prisma Expo Docker Caddy Cloudflare El MVP corre en modo demo por defecto. Las credenciales de pago y KYC reales no se versionan.</p>
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">08 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">Next.js App Router y TypeScript en el frontend; PostgreSQL y Prisma en los datos; Expo/React Native en móvil; Docker, Caddy y Cloudflare en producción.</p></div><div class="rich reveal"><p>Next.js TypeScript PostgreSQL Prisma Expo Docker Caddy Cloudflare El MVP corre en modo demo por defecto. Las credenciales de pago y KYC reales no se versionan.</p>
 <p>MesaCerca · arranque</p>
 <pre><span>$</span> npm install
 <span>$</span> cp .env.example .env
 <span>$</span> npx prisma migrate dev
 <span>$</span> npm run dev</pre></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">09 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
 <a class="card" href=""><h3>La guía completa</h3><p>Producto, roles, arquitectura, instalación y límites.</p></a>
 <a class="card" href=""><h3>Manual de operación</h3><p>Roles, flujos, pagos, KYC y despliegue.</p></a>
 <a class="card" href=""><h3>Guía de código</h3><p>Rutas, modelo de datos, pagos y extensión.</p></a>
 <a class="card" href=""><h3>Referencias</h3><p>Next.js, Prisma, Expo, pagos y seguridad.</p></a>
-</div></div></div></section>
-<section class="cta"><div class="wrap"><div class="cta-box reveal">
+</div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Lo que no funcionó</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Las primeras versiones existen para que estos errores no se repitan: cada una dejó una decisión de diseño verificable.</p></div><div class="fail-grid reveal"><div class="fail"><div class="v">mesacerca</div><h3>SQLite en desarrollo, PostgreSQL en producción</h3><p>El MVP arrancó con SQLite por comodidad, pero producción necesitaba concurrencia, TLS, roles y migraciones reales. Mantener dos motores reproducía diferencias tarde y caras. Se adoptó PostgreSQL 18 desde el inicio, con Prisma y migraciones versionadas; el entorno local también usa TLS y un puerto dedicado.</p></div><div class="fail"><div class="v">mesacerca</div><h3>Bypass de MFA en el login móvil</h3><p>Una cuenta con MFA podía entrar por la app sin el segundo factor porque el login móvil no consultaba mfaEnabled. En lugar de inventar un bypass se decidió rechazar esas cuentas con 403 y mostrar un mensaje claro. La limitación quedó declarada en la documentación.</p></div><div class="fail"><div class="v">mesacerca</div><h3>Reembolso solo en la base</h3><p>La acción administrativa marcaba el pedido como REFUNDED sin llamar a la pasarela, así que el estado local contradecía al proveedor. Ahora el reembolso invoca al proveedor y solo confirma con respuesta; un pago posterior a una cancelación queda en REFUND_PENDING.</p></div><div class="fail"><div class="v">mesacerca</div><h3>Webhook de pago sin firma obligatoria</h3><p>La firma se validaba solo si el secreto estaba configurado, de modo que un request falso podía simular un pago aprobado. Se exigió firma en producción, comparación timing-safe, validación de monto y moneda, e idempotencia. En sandbox la configuración pasó a ser explícita.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Ficha de evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios con la misma escala en todo el catálogo, para comparar sin marketing.</p></div><div class="rating-head reveal"><div class="rating-avg">3.7<small>/5</small></div><div><strong>Madurez global</strong><p>Marketplace completo en código y documentación, con auditorías y límites declarados. No es un servicio operando: la copia publicada exige el árbol de runtime original.</p></div></div><div class="rating reveal"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><i style="width:60%"></i></div><div class="rating-score">3/5</div><div class="rating-note">MVP funcional con dos auditorías y QA de cuatro roles; sin despliegue, pagos reales ni KYC live.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><i style="width:40%"></i></div><div class="rating-score">2/5</div><div class="rating-note">La copia sanitizada omite lib, components, prisma y scripts; compilar exige el árbol de runtime original.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Veintitrés documentos de diseño, auditoría, cumplimiento y operación, más bitácora de incidencias.</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Sección de límites honestos: sin VPS, sin boleta SII, sin pentest y con rate limit en memoria.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Recorre pedidos, pagos, KYC, MFA, repartidores y auditoría con decisiones justificadas una por una.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><i style="width:40%"></i></div><div class="rating-score">2/5</div><div class="rating-note">Requiere PostgreSQL 18, Prisma y credenciales de Transbank, Mercado Pago y Didit para el flujo completo.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Preguntas típicas</div><h2>Lo que suelen preguntar</h2></div><div class="faq reveal"><details><summary>¿Está en producción?</summary><p>No. Es un proyecto con documentación de despliegue y auditorías, no un servicio operando.</p></details><details><summary>¿Por qué 24 documentos?</summary><p>El diseño, el negocio, el cumplimiento y la seguridad se trabajaron por separado.</p></details><details><summary>¿Necesito Cloudflare?</summary><p>No; se puede desplegar en VPS. La guía cubre ambos caminos.</p></details><details><summary>¿Tiene app móvil?</summary><p>Hay documentos de app y QA de dispositivos; el núcleo publicado es web.</p></details><details><summary>¿Maneja pagos?</summary><p>El modelo y el cumplimiento están documentados; la integración de pagos debe validarse aparte.</p></details></div></div></section><section class="cta"><div class="wrap"><div class="cta-box reveal">
   <div class="kicker">Siguiente paso</div><h2>¿Te animás?</h2>
   <p>Usá esta familia como base para mesacerca. Está documentada para que puedas entenderla, ejecutarla y continuarla sin adivinar.</p>
   <div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="https://github.com/jmadasme/mesacerca" target="_blank" rel="noopener">Abrir el repositorio <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="/software/">Ver más de Software</a></div>

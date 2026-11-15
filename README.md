@@ -12,8 +12,6 @@ Cada carpeta conserva el contenido original de su etapa, sin `.git`, dependencia
 instaladas ni binarios pesados. La documentación de operación y de código está en
 [`docs/`](docs/), y el sitio del proyecto en [`docs/index.html`](docs/index.html).
 
-> **Nota de preservación:** se removieron credenciales, claves o tokens detectados en 5 archivo(s) de esta familia. Los ejemplos y plantillas seguras se conservan.
-
 ## Índice de versiones
 
 | Versión | Qué aporta | Archivos |
@@ -35,6 +33,64 @@ npm install && npx prisma migrate dev && npm run dev
 
 Requiere PostgreSQL y variables de entorno. Los datos de comercios y las credenciales no se incluyen.
 
+<!-- ficha -->
+## Ficha de evaluación
+
+**Madurez global: 3.7/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 3/5 | MVP funcional con dos auditorías y QA de cuatro roles; sin despliegue, pagos reales ni KYC live. |
+| Reproducibilidad | 2/5 | La copia sanitizada omite lib, components, prisma y scripts; compilar exige el árbol de runtime original. |
+| Documentación | 5/5 | Veintitrés documentos de diseño, auditoría, cumplimiento y operación, más bitácora de incidencias. |
+| Honestidad de límites | 5/5 | Sección de límites honestos: sin VPS, sin boleta SII, sin pentest y con rate limit en memoria. |
+| Valor demostrativo | 5/5 | Recorre pedidos, pagos, KYC, MFA, repartidores y auditoría con decisiones justificadas una por una. |
+| Facilidad de despliegue | 2/5 | Requiere PostgreSQL 18, Prisma y credenciales de Transbank, Mercado Pago y Didit para el flujo completo. |
+
+Marketplace completo en código y documentación, con auditorías y límites declarados. No es un servicio operando: la copia publicada exige el árbol de runtime original.
+
+## Lo que no funcionó
+
+### mesacerca — SQLite en desarrollo, PostgreSQL en producción
+
+El MVP arrancó con SQLite por comodidad, pero producción necesitaba concurrencia, TLS, roles y migraciones reales. Mantener dos motores reproducía diferencias tarde y caras. Se adoptó PostgreSQL 18 desde el inicio, con Prisma y migraciones versionadas; el entorno local también usa TLS y un puerto dedicado.
+
+### mesacerca — Bypass de MFA en el login móvil
+
+Una cuenta con MFA podía entrar por la app sin el segundo factor porque el login móvil no consultaba mfaEnabled. En lugar de inventar un bypass se decidió rechazar esas cuentas con 403 y mostrar un mensaje claro. La limitación quedó declarada en la documentación.
+
+### mesacerca — Reembolso solo en la base
+
+La acción administrativa marcaba el pedido como REFUNDED sin llamar a la pasarela, así que el estado local contradecía al proveedor. Ahora el reembolso invoca al proveedor y solo confirma con respuesta; un pago posterior a una cancelación queda en REFUND_PENDING.
+
+### mesacerca — Webhook de pago sin firma obligatoria
+
+La firma se validaba solo si el secreto estaba configurado, de modo que un request falso podía simular un pago aprobado. Se exigió firma en producción, comparación timing-safe, validación de monto y moneda, e idempotencia. En sandbox la configuración pasó a ser explícita.
+
+## Preguntas típicas
+
+**¿Está en producción?**
+
+No. Es un proyecto con documentación de despliegue y auditorías, no un servicio operando.
+
+**¿Por qué 24 documentos?**
+
+El diseño, el negocio, el cumplimiento y la seguridad se trabajaron por separado.
+
+**¿Necesito Cloudflare?**
+
+No; se puede desplegar en VPS. La guía cubre ambos caminos.
+
+**¿Tiene app móvil?**
+
+Hay documentos de app y QA de dispositivos; el núcleo publicado es web.
+
+**¿Maneja pagos?**
+
+El modelo y el cumplimiento están documentados; la integración de pagos debe validarse aparte.
+
+<!-- /ficha -->
+
 ## Documentación
 
 - [`docs/datasheet.md`](docs/datasheet.md) — instalación, operación y límites.
@@ -42,13 +98,13 @@ Requiere PostgreSQL y variables de entorno. Los datos de comercios y las credenc
 - [`docs/REFERENCES.md`](docs/REFERENCES.md) — estándares, librerías y fuentes.
 - [`docs/index.html`](docs/index.html) — página del proyecto (GitHub Pages).
 
-## Alcance y honestidad
+## El proyecto en detalle
 
 <div align="center">
 
 <img src="docs/assets/logo-mesacerca.svg" alt="MesaCerca" width="420" />
 
-## MesaCerca
+### MesaCerca
 
 **La cocina local, a tu puerta.**
 
